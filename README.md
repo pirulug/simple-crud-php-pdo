@@ -5,7 +5,7 @@ This is a simple PHP and MySQL CRUD (Create, Read, Update, Delete) application u
 
 ## Prerequisites
 - Web server (e.g., Apache)
-- PHP (>=5.3.0)
+- PHP (>=7.4.0)
 - MySQL database server
 - Knowledge of HTML, PHP, and MySQL
 
