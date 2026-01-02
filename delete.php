@@ -1,15 +1,62 @@
 <?php
-//including the database connection file
-include ("config.php");
+/**
+ * ---------------------------------------------------------
+ * delete.php
+ * Proyecto: simple-crud-php-pdo
+ * Descripción:
+ *  - Elimina un registro de la tabla `users`
+ *  - Ejemplo práctico de:
+ *      • DELETE con PDO
+ *      • Uso de parámetros con bindParam
+ *      • Protección contra SQL Injection
+ * ---------------------------------------------------------
+ */
 
-//getting id of the data from url
+// Incluimos el archivo de conexión a la base de datos
+include("config.php");
+
+/**
+ * ---------------------------------------------------------
+ * OBTENER ID DESDE LA URL
+ * ---------------------------------------------------------
+ * - El ID se recibe mediante GET
+ * - Ejemplo: delete.php?id=5
+ */
 $id = $_GET['id'];
 
-//deleting the row from table
-$query = "DELETE FROM users WHERE id=:id";
-$stmt  = $dbConn->prepare($query);
-$stmt->bindParam(":id", $id);
+/**
+ * ---------------------------------------------------------
+ * CONSULTA DELETE CON PARÁMETRO
+ * ---------------------------------------------------------
+ * - Se utiliza un marcador nombrado (:id)
+ * - Evita inyección SQL
+ */
+$query = "DELETE FROM users WHERE id = :id";
+
+/**
+ * PREPARE
+ * - Prepara la consulta SQL
+ */
+$stmt = $dbConn->prepare($query);
+
+/**
+ * BINDPARAM
+ * - Asocia el valor del ID al parámetro :id
+ */
+$stmt->bindParam(':id', $id);
+
+/**
+ * EXECUTE
+ * - Ejecuta la eliminación del registro
+ */
 $stmt->execute();
 
-//redirecting to the display page (index.php in our case)
-header("Location:index.php");
+/**
+ * ---------------------------------------------------------
+ * REDIRECCIÓN
+ * ---------------------------------------------------------
+ * - Luego de eliminar el registro
+ * - Se redirige al listado principal
+ */
+header("Location: index.php");
+exit();

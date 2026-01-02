@@ -1,37 +1,87 @@
-# Simple PHP-MySQL CRUD (Add, Edit, Delete, View) using PDO
+# Simple CRUD PHP + MySQL usando PDO
 
-## Introduction
-This is a simple PHP and MySQL CRUD (Create, Read, Update, Delete) application using PDO (PHP Data Objects) for database interaction. It allows users to perform basic operations like adding, editing, deleting, and viewing data from a MySQL database.
+Este proyecto es un ejemplo educativo de un sistema **CRUD (Create, Read, Update, Delete)** desarrollado con **PHP** y **MySQL** utilizando **PDO (PHP Data Objects)**.
 
-## Prerequisites
-- Web server (e.g., Apache)
-- PHP (>=7.4.0)
-- MySQL database server
-- Knowledge of HTML, PHP, and MySQL
+El objetivo principal es **enseñar paso a paso** cómo conectar PHP con MySQL usando PDO, cómo trabajar con consultas preparadas y cómo manejar resultados con `PDO::FETCH_OBJ`.
 
-## Setup
-1. Clone or download the project files to your local machine.
-2. Import the `database.sql` file into your MySQL database to create the necessary database and tables.
-3. Update the `config.php` file with your database connection details (hostname, database name, username, and password).
-4. Place the project files in your web server's document root directory.
-5. Ensure that your web server and MySQL server are running.
+- - -
 
-## Usage
-1. Open your web browser and navigate to the project directory.
-2. You can add new data by clicking on the "Add New Data" link on the homepage (`index.php`).
-3. To edit existing data, click on the "Edit" link next to the respective entry on the homepage.
-4. To delete data, click on the "Delete" link next to the respective entry on the homepage (a confirmation dialog will appear).
-5. The homepage (`index.php`) displays a table with all existing data, including options to edit or delete each entry.
+## Características del proyecto
 
-## Files
-- `add.html`: HTML form to add new data.
-- `add.php`: PHP script to handle the addition of new data to the database.
-- `config.php`: PHP script containing database connection settings.
-- `database.sql`: SQL script to create the necessary database and tables.
-- `delete.php`: PHP script to handle the deletion of data from the database.
-- `edit.php`: PHP script to handle the editing of existing data.
-- `index.php`: Homepage displaying existing data and options to add, edit, or delete entries.
+*   Conexión segura a MySQL usando PDO
+*   Consultas preparadas (`prepare()`)
+*   Uso de parámetros con `bindParam()`
+*   Obtención de datos como objetos (`FETCH_OBJ`)
+*   Separación clara entre HTML y PHP
+*   Estructura simple y fácil de entender
 
-## Note
-- This application uses PDO for database interaction, which provides a secure and efficient way to access databases in PHP.
-- Ensure that you have proper error handling and security measures in place before deploying this application in a production environment.
+- - -
+
+## Requisitos
+
+*   Servidor web (Apache recomendado)
+*   PHP 7.4 o superior
+*   MySQL o MariaDB
+*   Conocimientos básicos de HTML y PHP
+
+- - -
+
+## Instalación y configuración
+
+1.  Clonar o descargar el proyecto en tu equipo.
+2.  Importar el archivo `database.sql` en MySQL.
+3.  Editar el archivo `config.php` y configurar:
+    *   Host
+    *   Nombre de la base de datos
+    *   Usuario
+    *   Contraseña
+4.  Colocar el proyecto en el directorio público del servidor.
+5.  Iniciar Apache y MySQL.
+
+- - -
+
+## Uso del sistema
+
+1.  Abrir el navegador y acceder a `index.php`.
+2.  Agregar registros usando **Agregar nuevo registro**.
+3.  Editar registros con el botón **Editar**.
+4.  Eliminar registros con el botón **Eliminar**.
+5.  Visualizar todos los registros en la tabla principal.
+
+- - -
+
+## Estructura de archivos
+
+*   `add.html` – Formulario HTML para crear registros
+*   `add.php` – Inserta datos en la base de datos (CREATE)
+*   `config.php` – Conexión a MySQL usando PDO
+*   `index.php` – Lista los registros (READ)
+*   `edit.php` – Edita registros existentes (UPDATE)
+*   `delete.php` – Elimina registros (DELETE)
+
+- - -
+
+## Conceptos enseñados
+
+*   Uso correcto de PDO en PHP
+*   Consultas SQL seguras
+*   Flujo CRUD completo
+*   Trabajo con objetos en PHP
+*   Separación lógica entre vista y procesamiento
+
+- - -
+
+## Nota importante
+
+Este proyecto es **educativo**. Antes de usarlo en producción se recomienda:
+
+*   Validaciones más robustas
+*   Manejo de errores con logs
+*   Protección contra CSRF
+*   Filtros y sanitización avanzada
+
+- - -
+
+## Objetivo final
+
+Servir como base clara y comprensible para estudiantes que desean aprender cómo funciona un CRUD real en PHP usando PDO y buenas prácticas básicas.
