@@ -42,22 +42,23 @@ El objetivo principal es **enseñar paso a paso** cómo conectar PHP con MySQL u
 
 ## Uso del sistema
 
-1.  Abrir el navegador y acceder a `index.php`.
-2.  Agregar registros usando **Agregar nuevo registro**.
-3.  Editar registros con el botón **Editar**.
-4.  Eliminar registros con el botón **Eliminar**.
-5.  Visualizar todos los registros en la tabla principal.
+1.  Abrir el navegador y acceder a `index.php` (el cual redirige automáticamente a `read.php`).
+2.  Agregar registros usando **Add New User** (que lleva a `create.html`).
+3.  Editar registros con el botón **Edit** (que procesa los datos en `update.php`).
+4.  Eliminar registros con el botón **Delete** (que procesa los datos en `delete.php`).
+5.  Visualizar todos los registros en la tabla principal de `read.php`.
 
 - - -
 
 ## Estructura de archivos
 
-*   `add.html` – Formulario HTML para crear registros
-*   `add.php` – Inserta datos en la base de datos (CREATE)
-*   `config.php` – Conexión a MySQL usando PDO
-*   `index.php` – Lista los registros (READ)
-*   `edit.php` – Edita registros existentes (UPDATE)
+*   `index.php` – Redirige automáticamente al listado principal (`read.php`)
+*   `create.html` – Formulario HTML para crear registros (CREATE)
+*   `create.php` – Inserta datos en la base de datos (CREATE)
+*   `read.php` – Lista los registros (READ)
+*   `update.php` – Edita registros existentes (UPDATE)
 *   `delete.php` – Elimina registros (DELETE)
+*   `config.php` – Conexión a MySQL usando PDO
 
 - - -
 

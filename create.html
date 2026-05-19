@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add User (Create)</title>
+</head>
+<body>
+
+  <!-- Link back to the main directory -->
+  <a href="read.php">Home</a>
+  <br><br>
+
+  <!--
+    HTML Form for user creation
+    - action="create.php" -> PHP file that processes the input
+    - method="post"      -> Data is sent securely in the request body
+  -->
+  <form action="create.php" method="post" name="form1">
+
+    <table width="25%" border="0">
+
+      <tr>
+        <td>Name</td>
+        <td>
+          <input type="text" name="name">
+        </td>
+      </tr>
+
+      <tr>
+        <td>Age</td>
+        <td>
+          <input type="number" name="age">
+        </td>
+      </tr>
+
+      <tr>
+        <td>Email</td>
+        <td>
+          <input type="email" name="email">
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <!--
+            The submit button name "Submit" is used in create.php
+            to detect if the form has been submitted.
+          -->
+          <input type="submit" name="Submit" value="Add User">
+        </td>
+      </tr>
+
+    </table>
+
+  </form>
+
+</body>
+</html>

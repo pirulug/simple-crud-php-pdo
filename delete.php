@@ -1,62 +1,38 @@
 <?php
 /**
- * ---------------------------------------------------------
  * delete.php
- * Proyecto: simple-crud-php-pdo
- * Descripción:
- *  - Elimina un registro de la tabla `users`
- *  - Ejemplo práctico de:
- *      • DELETE con PDO
- *      • Uso de parámetros con bindParam
- *      • Protección contra SQL Injection
- * ---------------------------------------------------------
+ * Project: simple-crud-php-pdo
+ * Description:
+ *  - Deletes a user record from the "users" table (DELETE operation).
+ *
+ * PHP functions and methods used:
+ * - include_once: https://www.php.net/manual/en/function.include-once.php
+ * - header: https://www.php.net/manual/en/function.header.php
+ * - exit: https://www.php.net/manual/en/function.exit.php
+ * - PDO::prepare: https://www.php.net/manual/en/pdo.prepare.php
+ * - PDOStatement::bindParam: https://www.php.net/manual/en/pdostatement.bindparam.php
+ * - PDOStatement::execute: https://www.php.net/manual/en/pdostatement.execute.php
  */
 
-// Incluimos el archivo de conexión a la base de datos
-include("config.php");
+// Include the database connection configuration
+include_once("config.php");
 
-/**
- * ---------------------------------------------------------
- * OBTENER ID DESDE LA URL
- * ---------------------------------------------------------
- * - El ID se recibe mediante GET
- * - Ejemplo: delete.php?id=5
- */
-$id = $_GET['id'];
+// Retrieve the ID of the record to delete from the GET parameter
+$id = $_GET["id"];
 
-/**
- * ---------------------------------------------------------
- * CONSULTA DELETE CON PARÁMETRO
- * ---------------------------------------------------------
- * - Se utiliza un marcador nombrado (:id)
- * - Evita inyección SQL
- */
+// Delete query with named placeholder to avoid SQL injection
 $query = "DELETE FROM users WHERE id = :id";
 
-/**
- * PREPARE
- * - Prepara la consulta SQL
- */
+// Prepare the database delete statement
 $stmt = $dbConn->prepare($query);
 
-/**
- * BINDPARAM
- * - Asocia el valor del ID al parámetro :id
- */
-$stmt->bindParam(':id', $id);
+// Bind the ID parameter to the placeholder
+$stmt->bindParam(":id", $id);
 
-/**
- * EXECUTE
- * - Ejecuta la eliminación del registro
- */
+// Execute the statement to remove the record
 $stmt->execute();
 
-/**
- * ---------------------------------------------------------
- * REDIRECCIÓN
- * ---------------------------------------------------------
- * - Luego de eliminar el registro
- * - Se redirige al listado principal
- */
-header("Location: index.php");
+// Redirect back to the main dashboard (read.php)
+header("Location: read.php");
 exit();
+?>
