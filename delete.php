@@ -15,7 +15,7 @@
  */
 
 // Include the database connection configuration
-include_once("config.php");
+include_once("connection.php");
 
 // Retrieve the ID of the record to delete from the GET parameter
 $id = $_GET["id"];

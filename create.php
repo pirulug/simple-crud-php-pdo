@@ -3,29 +3,36 @@
  * create.php
  * Project: simple-crud-php-pdo
  * Description:
- *  - Processes the HTML form data from create.html.
- *  - Inserts a new user record into the "users" table.
+ *  - Handles both the creation HTML form and form submission (CREATE operation).
+ *  - If the form is submitted via POST, it validates inputs, binds parameters to prevent SQL injection,
+ *    and inserts the new record.
+ *  - Otherwise, it displays the HTML entry form.
  *
  * PHP functions and methods used:
  * - isset: https://www.php.net/manual/en/function.isset.php
  * - empty: https://www.php.net/manual/en/function.empty.php
+ * - exit: https://www.php.net/manual/en/function.exit.php
  * - PDO::prepare: https://www.php.net/manual/en/pdo.prepare.php
  * - PDOStatement::bindParam: https://www.php.net/manual/en/pdostatement.bindparam.php
  * - PDOStatement::execute: https://www.php.net/manual/en/pdostatement.execute.php
  */
 
-// Include the database connection configuration
-include_once("config.php");
+// Include the database connection settings
+include_once("connection.php");
 
-// Verify if the form was actually submitted
+/**
+ * =========================================================
+ * PART 1: PROCESS FORM SUBMISSION (POST)
+ * =========================================================
+ */
 if (isset($_POST["Submit"])) {
 
-  // Capture the POST data fields
+  // Capture the input values
   $name  = $_POST["name"];
   $age   = $_POST["age"];
   $email = $_POST["email"];
 
-  // Perform basic validation to ensure no field is empty
+  // Perform fundamental validation
   if (empty($name) || empty($age) || empty($email)) {
 
     if (empty($name)) {
@@ -40,7 +47,7 @@ if (isset($_POST["Submit"])) {
       echo "<font color=\"red\">The Email field is empty.</font><br/>";
     }
 
-    // Provide a link to go back to the form page
+    // Provide a return path to the creation form
     echo "<br/><a href=\"javascript:self.history.back();\">Go Back</a>";
 
   } else {
@@ -48,10 +55,10 @@ if (isset($_POST["Submit"])) {
     // SQL statement with named placeholders to prevent SQL injection
     $query = "INSERT INTO users (name, age, email) VALUES (:name, :age, :email)";
 
-    // Prepare the query using PDO
+    // Prepare the statement
     $stmt = $dbConn->prepare($query);
 
-    // Bind PHP variables to the SQL query placeholders
+    // Bind parameters to the query
     $stmt->bindParam(":name", $name);
     $stmt->bindParam(":age", $age);
     $stmt->bindParam(":email", $email);
@@ -59,9 +66,69 @@ if (isset($_POST["Submit"])) {
     // Execute the database insert action
     $stmt->execute();
 
-    // Display a success message and direct the user to the dashboard
+    // Display a success message, link back to the list, and exit
     echo "<font color=\"green\">Data added successfully.</font>";
     echo "<br/><a href=\"read.php\">View Results</a>";
+    exit();
   }
 }
 ?>
+
+<!--
+  =========================================================
+  PART 2: DISPLAY FORM (GET / DEFAULT STATE)
+  =========================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add User (Create)</title>
+</head>
+<body>
+
+  <!-- Link back to the main directory -->
+  <a href="read.php">Home</a>
+  <br><br>
+
+  <!--
+    HTML Form pointing back to create.php
+  -->
+  <form action="create.php" method="post" name="form1">
+
+    <table width="25%" border="0">
+
+      <tr>
+        <td>Name</td>
+        <td>
+          <input type="text" name="name">
+        </td>
+      </tr>
+
+      <tr>
+        <td>Age</td>
+        <td>
+          <input type="number" name="age">
+        </td>
+      </tr>
+
+      <tr>
+        <td>Email</td>
+        <td>
+          <input type="email" name="email">
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <input type="submit" name="Submit" value="Add User">
+        </td>
+      </tr>
+
+    </table>
+
+  </form>
+
+</body>
+</html>

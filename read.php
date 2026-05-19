@@ -14,7 +14,7 @@
  */
 
 // Include the database configuration file to establish the PDO connection ($dbConn)
-include_once("config.php");
+include_once("connection.php");
 
 // Formulate the SQL query to select all records from the "users" table ordered by the newest first
 $query = "SELECT * FROM users ORDER BY id DESC";
@@ -38,7 +38,7 @@ $users = $stmt->fetchAll(PDO::FETCH_OBJ);
 <body>
 
   <!-- Link to the CREATE form -->
-  <a href="create.html">Add New User</a>
+  <a href="create.php">Add New User</a>
   <br><br>
 
   <!-- Table to display the list of users -->

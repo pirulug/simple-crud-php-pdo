@@ -19,7 +19,7 @@
  */
 
 // Include database connection settings
-include_once("config.php");
+include_once("connection.php");
 
 /**
  * =========================================================
